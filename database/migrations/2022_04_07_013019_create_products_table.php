@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('stock');
             $table->date('boardingDate');
             $table->unsignedBigInteger('brand_id');
-            $table->foreign('brand_id')->references('reference')->on('brands');
+            $table->foreign('brand_id')->references('id')->on('brands');
             $table->unsignedBigInteger('size_id');
             $table->foreign('size_id')->references('id')->on('sizes');
             $table->timestamps();

@@ -10,8 +10,8 @@ class Brand extends Model
     use HasFactory;
 
     protected $fillable = [
-        'reference',
-        'name'
+        'name',
+        'reference'
     ];
 
     public function products(){

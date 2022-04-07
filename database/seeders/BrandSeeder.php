@@ -16,13 +16,16 @@ class BrandSeeder extends Seeder
     public function run()
     {
         Brand::create([
-            'name' => 'Nike'
+            'name' => 'Nike',
+            'reference' => "09TER4"
         ]);
         Brand::create([
-            'name' => 'Adidas'
+            'name' => 'Adidas',
+            'reference' => "05FE21"
         ]);
         Brand::create([
-            'name' => 'Quiksilver'
+            'name' => 'Quiksilver',
+            'reference' => "B8R60R"
         ]);
     }
 }

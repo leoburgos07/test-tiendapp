@@ -30,7 +30,7 @@ class ProductSeeder extends Seeder
             'observations' => 'Chaqueta de cuero en color negro',
             'stock' => 250,
             'boardingDate' => Carbon::now(),
-            'brand_id' => 1,
+            'brand_id' => 3,
             'size_id' => 1
         ]);
 
