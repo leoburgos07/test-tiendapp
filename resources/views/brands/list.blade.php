@@ -27,8 +27,16 @@ Marcas
         <tr>
             <th>{{$brand->reference}}</th>
             <td>{{$brand->name}}</td>
-            <td> <a href="{{url("brands/{$brand->id}/edit")}}"><i class="fas fa-pen-square"></i></a>
-
+            <td class="d-flex justify-content-center">
+                
+                <a href="{{url("brands/{$brand->id}/edit")}}" class="btn btn-dark"><i class="fas fa-pen-square"></i></a>
+                <form action="{{ url("brands/{$brand->id}") }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-dark"><i class="fas fa-trash-alt"></i></button>
+                </form>  
+            </td>
+            <td>
             </td>
         </tr>
         @empty
@@ -39,10 +47,10 @@ Marcas
 </table>
 @if (session('status'))
 <div class="alert alert-success alert-dismissible fade show" role="alert">
-{{ session('status') }}
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
+    {{ session('status') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
 </div>
 @endif
 

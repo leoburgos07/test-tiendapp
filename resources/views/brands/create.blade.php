@@ -26,7 +26,7 @@
                         <div class="form-group col-md-6">
                             <label for="reference" class="font-weight-bold">Reference</label>
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control" name="reference" maxlength="6" minlength="6" required>
+                            <input type="text" class="form-control" name="reference" maxlength="6" minlength="6" placeholder="Alfanumerica de 6 caracteres" required>
                         </div>
         </div>
         <button type="submit" class="btn btn-primary">Crear</button>

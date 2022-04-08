@@ -7,7 +7,7 @@ Marcas
 
 
 @section('title-content')
-<h1>Listado de marcas</h1>
+<h1>Edición de Marca</h1>
 @endsection
 
 @section('content')

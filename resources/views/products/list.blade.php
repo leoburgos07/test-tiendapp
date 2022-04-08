@@ -36,9 +36,18 @@
             <td>{{$product->talla}}</td>
             <td>{{$product->stock}}</td>
             <td>{{$product->boardingDate}}</td>
-            <td> <i class="fas fa-pen-square"></i>
-
+            <td class="d-flex justify-content-center">
+                
+                <a href="{{url("products/{$product->id}/edit")}}" class="btn btn-dark"><i class="fas fa-pen-square"></i></a>
+                <form action="{{ url("products/{$product->id}") }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-dark"><i class="fas fa-trash-alt"></i></button>
+                </form>
+                
             </td>
+
+            
         </tr>
         @empty
         <h3 class="text-danger">No hay productos registrados</h3>

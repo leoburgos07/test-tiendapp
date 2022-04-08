@@ -47,7 +47,7 @@ class BrandController extends Controller
     {
         try {
             $this->brand::create([
-                'name' => ucfirst($request['name']),
+                'name' => ucwords($request['name']),
                 'reference' => strtoupper($request['reference']) 
             ]);
 
@@ -71,7 +71,7 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Brand $brand
      * @return \Illuminate\Http\Response
      */
     public function edit(Brand $brand)
@@ -85,29 +85,32 @@ class BrandController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Brand $brand
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Brand $brand)
     {   
-        $ref = Brand::where('reference', $request['reference'])->first();
-        if($ref && $ref->name == $request['name']){
+        try {
+            
+            $brand->name = ucfirst($request['name']);
+            $brand->reference = strtoupper($request['reference']);
+            $brand->save();
+            return redirect('brands')->with('status', 'Marca Actualizada correctamente');
+        } catch (\Throwable $th) {
             return Redirect::back()->withErrors(['msg' => 'Ya existe una referencia igual']);
         }
-        $brand->name = $request['name'];
-        $brand->reference = $request['reference'];
-        $brand->save();
-        return redirect('brands')->with('status', 'Marca Actualizada correctamente');
+        
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Brand $brand
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Brand $brand)
     {
-        return "leonardoddd";
+        $brand->delete();
+        return redirect('brands')->with('status', 'Marca eliminada correctamente');
     }
 }

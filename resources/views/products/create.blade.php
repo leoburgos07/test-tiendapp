@@ -1,15 +1,15 @@
 @extends('layouts/app')
 
 @section('title')
-    Marcas
+    Creacion de productos
 @endsection
 
 @section('item')
-<a class="nav-link" href="{{url('brands/create')}}">Crear Marca</a>
+<a class="nav-link" href="{{url('brands/create')}}">Crear Producto</a>
 @endsection
 
 @section('title-content')   
-    <h1>Creación de marcas</h1>
+    <h1>Creación de productos</h1>
 @endsection
 
 @section('content')
@@ -25,7 +25,7 @@
                         <div class="form-group col-md-2">
                             <label for="stock" class="font-weight-bold">Cantidad</label>
                             <span class="text-danger">*</span>
-                            <input type="number" class="form-control" name="stock" required>
+                            <input type="number" class="form-control" name="stock" min="0" required>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="boardingDate" class="font-weight-bold">Fecha de embarque</label>
@@ -68,5 +68,6 @@
     @if($errors->any())
         <h4 class="text-danger">{{$errors->first()}}</h4>
     @endif
+    
 
 @endsection

@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Size;
 use App\Models\Brand;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
@@ -55,17 +57,17 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ProductRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         try {
             $this->product::create([
-                'name' => $request['name'],
+                'name' => ucfirst($request['name']),
                 'stock' => $request['stock'],
                 'boardingDate' => $request['boardingDate'],
-                'observations' => $request['observations'],
+                'observations' => ucfirst($request['observations']),
                 'brand_id' => $request['brand'],
                 'size_id' => $request['size']
             ]);
@@ -89,34 +91,49 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Product $product
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        $brands = $this->brand->all();
+        $sizes = $this->size->all();
+        return view('products.edit', compact(
+            'brands',
+            'sizes',
+            'product'
+        ));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Product $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        try {
+            $data = $request->all();
+            $product->update($data);
+            return redirect('products')->with('status', 'Producto Actualizado correctamente');
+        } catch (\Throwable $th) {
+            return redirect('products')->with('status', 'Error al actualizar el producto');
+        }
+        
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Product $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return Redirect::back()->with('status','Producto eliminado correctamente');
+
     }
 }
