@@ -20,17 +20,17 @@
                         <div class="form-group col-md-4">
                             <label for="name" class="font-weight-bold">Nombre</label>
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control" name="name" required>
+                            <input type="text" class="form-control" name="name" >
                         </div>
                         <div class="form-group col-md-2">
                             <label for="stock" class="font-weight-bold">Cantidad</label>
                             <span class="text-danger">*</span>
-                            <input type="number" class="form-control" name="stock" min="0" required>
+                            <input type="number" class="form-control" name="stock">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="boardingDate" class="font-weight-bold">Fecha de embarque</label>
                             <span class="text-danger">*</span>
-                            <input type="date" class="form-control" name="boardingDate" required>
+                            <input type="date" class="form-control" name="boardingDate" >
                         </div>
                         <div class="form-group col-md-1">
                             <label for="size" class="font-weight-bold">Talla</label>
@@ -57,7 +57,7 @@
                         <div class="form-group col-md-6">
                             <label for="observations" class="font-weight-bold">Observaciones</label>
                             <span class="text-danger">*</span>
-                            <textarea name="observations" class="form-control" cols="10" rows="3" required></textarea>
+                            <textarea name="observations" class="form-control" cols="10" rows="3" ></textarea>
                         </div>
                         
                         

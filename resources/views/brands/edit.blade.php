@@ -20,12 +20,12 @@ Marcas
                         <div class="form-group col-md-6">
                             <label for="name" class="font-weight-bold">Nombre</label>
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control" name="name" value="{{$brand->name}}" required>
+                            <input type="text" class="form-control" name="name" value="{{$brand->name}}" >
                         </div>
                         <div class="form-group col-md-6">
                             <label for="reference" class="font-weight-bold">Referencia</label>
                             <span class="text-danger">*</span>
-                            <input type="text" class="form-control" name="reference" maxlength="6" minlength="6" value="{{$brand->reference}}" required>
+                            <input type="text" class="form-control" name="reference" maxlength="6" value="{{$brand->reference}}" >
                         </div>
         </div>
         <button type="submit" class="btn btn-primary">Actualizar</button>

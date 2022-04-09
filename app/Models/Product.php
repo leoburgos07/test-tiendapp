@@ -18,6 +18,14 @@ class Product extends Model
         'size_id'
     ];
 
+    public function setNameAttribute($value){
+        $this->attributes['name'] = ucfirst($value);
+    }
+
+    public function setObservationsAttribute($value){
+        $this->attributes['observations'] = ucfirst($value);
+    }
+
     public function brands(){
         return $this->belongsTo(Brand::class);
     }

@@ -60,19 +60,20 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\ProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         try {
             $this->product::create([
-                'name' => ucfirst($request['name']),
+                'name' => $request['name'],
                 'stock' => $request['stock'],
                 'boardingDate' => $request['boardingDate'],
-                'observations' => ucfirst($request['observations']),
+                'observations' => $request['observations'],
                 'brand_id' => $request['brand'],
                 'size_id' => $request['size']
             ]);
+
             return redirect('products')->with('status', 'Producto creado correctamente');
-        } catch (\Throwable $th) {
+        } catch (\Exception $th) {
             return Redirect::back()->withErrors(['msg' => 'Error al crear el producto']);
         }
     }
@@ -109,16 +110,23 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Product $product
+     * @param  ProductRequest $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
         try {
-            $data = $request->all();
-            $product->update($data);
+            
+            $product->name = $request['name'];
+            $product->stock = $request['stock'];
+            $product->boardingDate = $request['boardingDate'];
+            $product->observations = $request['observations'];
+            $product->size_id = $request['size'];
+            $product->brand_id = $request['brand'];
+            $product->save();
             return redirect('products')->with('status', 'Producto Actualizado correctamente');
-        } catch (\Throwable $th) {
+        } catch (\Exception $th) {
+            return $th;
             return redirect('products')->with('status', 'Error al actualizar el producto');
         }
         

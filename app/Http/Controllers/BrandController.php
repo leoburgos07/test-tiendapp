@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BrandRequest;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,10 +41,10 @@ class BrandController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\BrandRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BrandRequest $request)
     {
         try {
             $this->brand::create([
@@ -84,16 +85,15 @@ class BrandController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\BrandRequest  $request
      * @param  Brand $brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Brand $brand)
+    public function update(BrandRequest $request, Brand $brand)
     {   
         try {
-            
-            $brand->name = ucfirst($request['name']);
-            $brand->reference = strtoupper($request['reference']);
+            $brand->name = $request['name'];
+            $brand->reference = $request['reference'];
             $brand->save();
             return redirect('brands')->with('status', 'Marca Actualizada correctamente');
         } catch (\Throwable $th) {
