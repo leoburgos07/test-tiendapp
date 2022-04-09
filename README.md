@@ -15,3 +15,12 @@ php artisan migrate (Este creará una BD llamada laravel por defecto con sus res
 php artisan db:seed 
 
 php artisan serve
+
+## Librerias externas usadas
+
+Carbon
+
+## Tipo de referencia usada para las marcas
+
+Alfanumerica de 6 caracteres.
+
