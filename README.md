@@ -10,6 +10,10 @@ Para correr el proyecto satisfactoriamente debe correr los siguientes comandos e
 
 composer install o composer update
 
+Crear la base de datos "laravel" en su gestor de preferencia.
+
+Nota: Si coloca otro nombre distinto a laravel, debe cambiar en el archivo .env la opción DB_DATABASE = {nombre de la db}
+
 php artisan migrate (Este creará una BD llamada laravel por defecto con sus respectivas tablas)
 
 php artisan db:seed 
